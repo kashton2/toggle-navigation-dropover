@@ -1,0 +1,157 @@
+html {
+	font-size: 62.5%;
+}
+
+/* mobile first css */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    background-color: #192f5e;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Step one: style the deault/generic/mile view- style my links to set their look while visible*/
+
+header {
+	background-color: #fff;
+	padding: 2%;
+}
+
+header a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block;
+    /*display block allows the clickable area to take up the full space of the li */
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #fff;
+    outline: none; 
+    /*focus set on outline provides visual feedback for keyboard neavigation*/
+}
+
+.toggle-btn:hover {
+    cursor: pointer;
+    /*to help people understand that this is a piece of navigation*/
+}
+
+svg rect {
+    fill: #3f3f3f;
+    /*we use fill to change the colour of an svg*/
+}
+
+.menu li {
+    line-height: 4rem;
+    /*line height lets the content set the height of the container*/
+    text-align: center;
+}
+
+/*style to overlap the content below "main content" This container does not have a relatively positioned parent container
+this contanier will be positioned absolutely to the body in mobile view.*/
+header nav {
+    position: absolute;
+    top: 6.6rem;
+    left: 0;
+    /*once absolute it will not inherit its bg colour from its old parent. put the bg colour back in*/
+    background-color: #ffffff;
+    width: 100vw; /*(100% of the viewport width)*/
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+ul.menu {
+    padding-bottom: 1rem;
+}
+
+/*is the extra class that we call from the javascript and is toggled by the method classList*/
+.show-nav {
+    max-height: 30.0rem;
+}
+
+/* ************************* section ****************** */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.777rem;
+}
+
+section h2,
+footer {
+    color: #fff;
+    font-size: 3.157rem;
+    margin-bottom: 2rem;
+}
+
+/*--- Footer --- */
+footer {
+	text-align: center;
+	position: -webkit-sticky;
+	position: sticky;
+}
+ 
+
+@media only screen and (min-width: 520px) {
+        
+        /*hide the toggle button in the tablet and desktop views- there is enough room on the screen to see the navigation now.*/
+        .toggle-btn {
+            display: none;
+        }
+
+
+        /*max height indicates that it can be less than 30 rem but never larger*/
+        header nav {
+            max-height: 30.0rem;
+        /*reset from absolute back to the default static*/
+            position: static;
+        /*width was previously was set to 100vw, reset to auto*/
+            max-width: 60%;
+        /*reset overflow from hidden to visible*/
+            overflow: visible;
+
+        }
+
+        .menu,
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /*flex grow specifies how much the item will grow relative to the rest of the flexible items inside the same container*/
+        ul.menu li {
+            flex-grow: 1;
+        /*flex shrink is required to use flex basis*/
+            flex-shrink: 0; 
+        /*flex basis specifies the inital lwngth of a flexible item*/
+            flex-basis: auto;
+        }
+}
+
+@media only screen and (min-width: 1300px) {
+        
+    /*this costrains the viewport on larger screens by center aligning the content where users like to see it in the middle*/
+        header {
+            width: 1300px;
+            margin: 0 auto;
+        }
+    }
